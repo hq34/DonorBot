@@ -23,7 +23,7 @@ async def update_lights():
     await upd.update_lights_for_users()
 
 
-async def send_light_to_user_after_registration(user_id):
+async def send_light_to_user(user_id):
     light = await db.select_light_from_user(user_id=user_id)
     await bot.send_message(user_id, text=(answers.at_the_moment + answers.blood_notifies.get(light)))
 
@@ -118,13 +118,15 @@ async def change_location(callback: types.CallbackQuery):
     await db.write_user_station(user_id=callback.from_user.id, station_id=callback.data)
     await upd.update_light_for_one_user(user_id=callback.from_user.id)
     await bot.send_message(callback.from_user.id, text=answers.saved_data, reply_markup=nav.main_menu)
-    await send_light_to_user_after_registration(user_id=callback.from_user.id)
+    await send_light_to_user(user_id=callback.from_user.id)
     await db.update_user_state(user_id=callback.from_user.id, state=States.S_MAIN_MENU)
 
 
 @dp.message_handler(lambda message: db.select_user_state(message.from_user.id) == States.S_MAIN_MENU)
 async def main_menu(message: types.Message):
     match message.text:
+        case '🩸 Проверить наличие':
+            await send_light_to_user(message.from_user.id)
         case '⚙️ Настройки':
             if await db.check_notify_from_user(message.from_user.id):
                 await bot.send_message(message.from_user.id, text=answers.settings_menu, reply_markup=nav.settings_menu_notify_off)

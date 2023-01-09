@@ -26,9 +26,10 @@ btnSendLocation = KeyboardButton('🚩 Отправить геолокацию',
 location_menu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnSendLocation)
 
 # main menu
+btnGetLight = KeyboardButton('🩸 Проверить наличие')
 btnInfo = KeyboardButton('❓ Инфо')
 btnSettings = KeyboardButton('⚙️ Настройки')
-main_menu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnSettings, btnInfo)
+main_menu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnGetLight, btnSettings, btnInfo)
 
 # info menu
 btnBack = KeyboardButton('🔙 Назад')
@@ -44,6 +45,7 @@ delete_menu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnYes, btnNo)
 
 # settings menu
 btnBack = KeyboardButton('🔙 Назад')
+btnChangeStation = KeyboardButton(' Сменить станцию')
 btnDelete = KeyboardButton('❌ Удалить данные')
 btnNotifyOff = KeyboardButton('🔕 Отключить уведомления')
 btnNotifyOn = KeyboardButton('🔔 Включить уведомления')
