@@ -45,12 +45,12 @@ delete_menu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnYes, btnNo)
 
 # settings menu
 btnBack = KeyboardButton('🔙 Назад')
-btnChangeStation = KeyboardButton(' Сменить станцию')
+btnChangeStation = KeyboardButton('🏥 Сменить станцию')
 btnDelete = KeyboardButton('❌ Удалить данные')
 btnNotifyOff = KeyboardButton('🔕 Отключить уведомления')
 btnNotifyOn = KeyboardButton('🔔 Включить уведомления')
-settings_menu_notify_off = ReplyKeyboardMarkup(resize_keyboard=True).add(btnNotifyOff, btnDelete, btnBack)
-settings_menu_notify_on = ReplyKeyboardMarkup(resize_keyboard=True).add(btnNotifyOn, btnDelete, btnBack)
+settings_menu_notify_off = ReplyKeyboardMarkup(resize_keyboard=True).add(btnNotifyOff,btnChangeStation, btnDelete, btnBack)
+settings_menu_notify_on = ReplyKeyboardMarkup(resize_keyboard=True).add(btnNotifyOn, btnChangeStation, btnDelete, btnBack)
 
 
 # stations inline menu
