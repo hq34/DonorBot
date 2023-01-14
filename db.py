@@ -187,11 +187,3 @@ async def write_coordinates_to_station(station_id, latitude, longitude):
 
 async def select_station_coordinates():
     return cur.execute('SELECT station_id, latitude, longitude FROM stations;').fetchall()
-
-
-async def main():
-    await db_connect()
-
-
-if __name__ == '__main__':
-    asyncio.run(main())

@@ -32,12 +32,11 @@ async def send_lights_to_users():
     users_info = await db.select_users_with_lights()
     for user_id, light, notify, station_id in users_info:
 
-        if notify or (not notify and light != '-max'):
+        if notify:
             await bot.send_message(user_id, answers.blood_notifies.get(light))
-
-        if light != '-max':
-            message = await answers.create_station_info(station_id=station_id)
-            await bot.send_message(user_id, message)
+            if light != '-max':
+                message = await answers.create_station_info(station_id=station_id)
+                await bot.send_message(user_id, message)
 
 
 async def scheduler():
