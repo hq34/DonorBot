@@ -40,7 +40,7 @@ async def send_lights_to_users():
 
 
 async def scheduler():
-    aioschedule.every().day.at('10:00').do(update_lights)
+    aioschedule.every().day.at('09:00').do(update_lights)
     aioschedule.every().day.at('14:00').do(send_lights_to_users)
     while True:
         await aioschedule.run_pending()
@@ -116,7 +116,7 @@ async def enter_location(message: types.Message):
 async def change_location(callback: types.CallbackQuery):
     await db.write_user_station(user_id=callback.from_user.id, station_id=callback.data)
     await upd.update_light_for_one_user(user_id=callback.from_user.id)
-    match await db.select_user_state(callback.from_user.id):
+    match db.select_user_state(callback.from_user.id):
         case States.S_ENTER_LOCATION:
             await bot.send_message(callback.from_user.id, text=answers.saved_data, reply_markup=nav.main_menu)
         case States.S_CHANGING_STATION:
