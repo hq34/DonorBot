@@ -44,8 +44,11 @@ async def find_nearest_points(user_coordinates):
 
 
 async def main():
-    await db.db_connect()
+    from pathlib import Path, PurePath
+    path = PurePath((Path().parent.absolute()).parents[0], 'db/donor.db')
+    await db.db_connect(path)
     await convert_addresses_to_coordinates()
+
 
 if __name__ == '__main__':
     asyncio.run(main())

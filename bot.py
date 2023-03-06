@@ -11,7 +11,7 @@ import markups as nav
 import answers
 import db
 import updator as upd
-from geolocations import find_nearest_points
+from addons.geolocations import find_nearest_points
 
 
 bot = Bot(token=token)

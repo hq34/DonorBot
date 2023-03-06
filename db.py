@@ -26,9 +26,9 @@ async def rewrite_rh_factor(rh_factor):
     return rh_factor[0]
 
 
-async def db_connect():
+async def db_connect(db_name=__database):
     global con, cur
-    con = sl.connect(__database)
+    con = sl.connect(db_name)
     cur = con.cursor()
     cur.execute('CREATE TABLE IF NOT EXISTS stations'
                 '(station_id INT PRIMARY KEY,'
